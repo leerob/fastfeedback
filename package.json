@@ -1,6 +1,6 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "fastfeedback",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "firebase": "^7.14.6",
     "next": "^9.3.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
