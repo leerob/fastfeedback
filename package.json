@@ -1,6 +1,6 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "fastfeedback",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
