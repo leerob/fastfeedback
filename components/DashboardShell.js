@@ -30,6 +30,7 @@ const DashboardShell = ({ children }) => {
           margin="0 auto"
           w="full"
           px={8}
+          h="70px"
         >
           <Flex>
             <Icon name="logo" size="24px" mr={8} />
