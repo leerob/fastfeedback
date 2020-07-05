@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Button, Flex, Text, Code, Icon, Link } from '@chakra-ui/core';
+import { Button, Flex, Text, Icon, Link } from '@chakra-ui/core';
 
 import { useAuth } from '@/lib/auth';
 
@@ -17,18 +17,16 @@ const Home = () => {
       margin="0 auto"
     >
       <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (document.cookie && document.cookie.includes('fast-feedback-auth')) {
+                window.location.href = "/dashboard"
+              }
+            `
+          }}
+        />
         <title>Fast Feedback</title>
-        <Head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                if (document.cookie && document.cookie.includes('auth')) {
-                  window.location.href = "/dashboard"
-                }
-              `
-            }}
-          />
-        </Head>
       </Head>
       <Icon color="black" name="logo" size="42px" mb={2} />
       <Text mb={4}>
