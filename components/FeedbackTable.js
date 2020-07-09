@@ -26,7 +26,7 @@ const FeedbackTable = (props) => {
             </Td>
             <Td>
               <Switch
-                variantColor="green"
+                color="green"
                 defaultIsChecked={feedback.status === 'active'}
               />
             </Td>
