@@ -14,7 +14,7 @@ import {
 import { deleteFeedback } from '@/lib/db';
 import { useAuth } from '@/lib/auth';
 
-const RemoveButton = ({ feedbackId }) => {
+const DeleteFeedbackButton = ({ feedbackId }) => {
   const [isOpen, setIsOpen] = useState();
   const cancelRef = useRef();
   const auth = useAuth();
@@ -44,7 +44,6 @@ const RemoveButton = ({ feedbackId }) => {
         variant="ghost"
         onClick={() => setIsOpen(true)}
       />
-
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -55,11 +54,9 @@ const RemoveButton = ({ feedbackId }) => {
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
             Delete Feedback
           </AlertDialogHeader>
-
           <AlertDialogBody>
             Are you sure? You can't undo this action afterwards.
           </AlertDialogBody>
-
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onClose}>
               Cancel
@@ -74,4 +71,4 @@ const RemoveButton = ({ feedbackId }) => {
   );
 };
 
-export default RemoveButton;
+export default DeleteFeedbackButton;
