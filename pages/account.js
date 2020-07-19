@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Box, Button } from '@chakra-ui/core';
 
 import { useAuth } from '@/lib/auth';
@@ -6,15 +7,21 @@ import DashboardShell from '@/components/DashboardShell';
 
 const Account = () => {
   const { user, signout } = useAuth();
+  const [isCheckoutLoading, setCheckoutLoading] = useState(false);
+  const [isBillingLoading, setBillingLoading] = useState(false);
 
   return (
     <DashboardShell>
       <Box>
         <Button
-          onClick={() => createCheckoutSession(user.uid)}
+          onClick={() => {
+            setCheckoutLoading(true);
+            createCheckoutSession(user.uid);
+          }}
           backgroundColor="gray.900"
           color="white"
           fontWeight="medium"
+          isLoading={isCheckoutLoading}
           _hover={{ bg: 'gray.700' }}
           _active={{
             bg: 'gray.800',
@@ -24,11 +31,15 @@ const Account = () => {
           Upgrade to Starter
         </Button>
         <Button
-          onClick={() => goToBillingPortal()}
+          onClick={() => {
+            setBillingLoading(true);
+            goToBillingPortal();
+          }}
           backgroundColor="gray.900"
           color="white"
           fontWeight="medium"
           ml={4}
+          isLoading={isBillingLoading}
           _hover={{ bg: 'gray.700' }}
           _active={{
             bg: 'gray.800',
