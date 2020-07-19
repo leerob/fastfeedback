@@ -1,5 +1,3 @@
-![Fast Feedback](https://user-images.githubusercontent.com/9113740/87883683-96487b80-c9ce-11ea-97d8-17447853618e.png)
-
 # Fast Feedback
 
 > Easily add user reviews, feedback, and comments to your website in one line of code.
