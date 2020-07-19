@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow read, write: if isUser(uid);
+      
+      match /checkout_sessions/{id} {
+        allow read, write: if isUser(uid);
+      }
+
+      match /subscriptions/{id} {
+        allow read, write: if isUser(uid);
+      }
+    }
+    
+    match /products/{id} {
+      allow read: if true;
+      allow write: if false;
+
+      match /prices/{id} {
+        allow read: if true;
+        allow write: if false;
+      }
+    }
+    
+    match /feedback/{uid} {
+      allow read: if isOwner();
+      allow delete: if isOwner();
+      allow update: if isOwner() && willBeOwner();
+      allow create: if willBeOwner();
+    }
+    
+    match /sites/{uid} {
+      allow read: if isOwner();
+      allow delete: if isOwner();
+      allow update: if isOwner() && willBeOwner();
+      allow create: if willBeOwner();
+    }
+  }
+}
+
+function isUser(uid) {
+  return isSignedIn() && request.auth.uid == uid;
+}
+
+function isSignedIn() {
+  return request.auth.uid != null;
+}
+
+function isOwner(){
+  return isUser(currentData().authorId);
+}
+
+function willBeOwner(){
+  return isUser(incomingData().authorId);
+}
+
+function currentData() {
+  return resource.data;
+}
+
+function incomingData() {
+  return request.resource.data;
+}
