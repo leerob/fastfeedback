@@ -6,7 +6,6 @@ import {
   Button,
   Flex,
   Text,
-  Stack,
   Badge,
   StatGroup,
   Stat,
@@ -16,7 +15,8 @@ import {
 } from '@chakra-ui/core';
 
 import { useAuth } from '@/lib/auth';
-import { createCheckoutSession, goToBillingPortal } from '@/lib/db';
+import { goToBillingPortal } from '@/lib/db';
+import Page from '@/components/Page';
 import DashboardShell from '@/components/DashboardShell';
 
 const FeedbackUsage = () => (
@@ -29,13 +29,13 @@ const FeedbackUsage = () => (
 
     <Stat>
       <StatLabel color="gray.700">Sites</StatLabel>
-      <StatNumber fontWeight="medium">5</StatNumber>
-      <StatHelpText>Starter</StatHelpText>
+      <StatNumber fontWeight="medium">1/∞</StatNumber>
+      <StatHelpText>Unlimited Sites</StatHelpText>
     </Stat>
   </StatGroup>
 );
 
-const SettingsTable = ({ children }) => (
+const SettingsTable = ({ stripeRole, children }) => (
   <Box
     backgroundColor="white"
     mt={8}
@@ -62,7 +62,7 @@ const SettingsTable = ({ children }) => (
           Settings
         </Text>
         <Badge h="1rem" variantColor="blue">
-          Free
+          {stripeRole}
         </Badge>
       </Flex>
     </Flex>
@@ -74,7 +74,6 @@ const SettingsTable = ({ children }) => (
 
 const Account = () => {
   const { user, signout } = useAuth();
-  const [isCheckoutLoading, setCheckoutLoading] = useState(false);
   const [isBillingLoading, setBillingLoading] = useState(false);
 
   return (
@@ -95,7 +94,7 @@ const Account = () => {
           <Heading letterSpacing="-1px">{user?.name}</Heading>
           <Text>{user?.email}</Text>
         </Flex>
-        <SettingsTable>
+        <SettingsTable stripeRole={user?.stripeRole}>
           <FeedbackUsage />
           <Text my={4}>
             Fast Feedback uses Stripe to update, change, or cancel your
@@ -103,23 +102,6 @@ const Account = () => {
             addresses through the secure portal.
           </Text>
           <Flex justify="flex-end">
-            {/* <Button
-              onClick={() => {
-                setCheckoutLoading(true);
-                createCheckoutSession(user.uid);
-              }}
-              backgroundColor="gray.900"
-              color="white"
-              fontWeight="medium"
-              isLoading={isCheckoutLoading}
-              _hover={{ bg: 'gray.700' }}
-              _active={{
-                bg: 'gray.800',
-                transform: 'scale(0.95)'
-              }}
-            >
-              Upgrade to Starter
-            </Button> */}
             <Button variant="ghost" ml={4} onClick={() => signout()}>
               Log Out
             </Button>
@@ -148,4 +130,10 @@ const Account = () => {
   );
 };
 
-export default Account;
+const AccountPage = () => (
+  <Page name="Account" path="/account">
+    <Account />
+  </Page>
+);
+
+export default AccountPage;
