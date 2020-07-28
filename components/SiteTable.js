@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Link } from '@chakra-ui/core';
-import { Table, Tr, Th, Td } from './Table';
-import { parseISO, format } from 'date-fns';
 import NextLink from 'next/link';
+import { Box, Link } from '@chakra-ui/core';
+import { parseISO, format } from 'date-fns';
+
+import { Table, Tr, Th, Td } from './Table';
 
 const SiteTable = ({ sites }) => {
   return (
