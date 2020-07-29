@@ -18,11 +18,11 @@ const SiteHeader = ({ siteName }) => (
         </NextLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink>{siteName}</BreadcrumbLink>
+        <BreadcrumbLink>{siteName || '-'}</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
     <Flex justifyContent="space-between">
-      <Heading mb={8}>{siteName}</Heading>
+      <Heading mb={8}>{siteName || '-'}</Heading>
     </Flex>
   </Box>
 );

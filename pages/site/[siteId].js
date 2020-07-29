@@ -85,7 +85,7 @@ const FeedbackPage = ({ initialFeedback, site }) => {
 
   return (
     <DashboardShell>
-      <SiteHeader siteName={site.name} />
+      <SiteHeader siteName={site?.name} />
       <Box
         display="flex"
         mx={4}
