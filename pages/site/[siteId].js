@@ -62,8 +62,6 @@ const FeedbackPage = ({ initialFeedback, site }) => {
     createFeedback(newFeedback);
   };
 
-  console.log(user, loading);
-
   const LoginOrLeaveFeedback = () =>
     user ? (
       <Button
