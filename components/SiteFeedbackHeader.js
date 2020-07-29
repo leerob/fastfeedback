@@ -9,7 +9,7 @@ import {
   Box
 } from '@chakra-ui/core';
 
-const FeedbackTableHeader = ({ siteName }) => (
+const SiteFeedbackHeader = ({ siteName }) => (
   <Box mx={4}>
     <Breadcrumb>
       <BreadcrumbItem>
@@ -17,11 +17,14 @@ const FeedbackTableHeader = ({ siteName }) => (
           <BreadcrumbLink>Feedback</BreadcrumbLink>
         </NextLink>
       </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink>{siteName || '–'}</BreadcrumbLink>
+      </BreadcrumbItem>
     </Breadcrumb>
     <Flex justifyContent="space-between">
-      <Heading mb={8}>All Feedback</Heading>
+      <Heading mb={8}>{siteName || '–'}</Heading>
     </Flex>
   </Box>
 );
 
-export default FeedbackTableHeader;
+export default SiteFeedbackHeader;

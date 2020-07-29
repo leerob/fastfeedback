@@ -5,6 +5,7 @@ import { useAuth } from '@/lib/auth';
 import { getAllFeedback } from '@/lib/db-admin';
 import Feedback from '@/components/Feedback';
 import FeedbackLink from '@/components/FeedbackLink';
+import LoginButtons from '@/components/LoginButtons';
 
 const SITE_ID = 'yjIaQj1mKtVKqUnU9tb3';
 
@@ -31,7 +32,7 @@ const Home = ({ allFeedback }) => {
               dangerouslySetInnerHTML={{
                 __html: `
               if (document.cookie && document.cookie.includes('fast-feedback-auth')) {
-                window.location.href = "/dashboard"
+                window.location.href = "/sites"
               }
             `
               }}
@@ -55,7 +56,7 @@ const Home = ({ allFeedback }) => {
           {auth.user ? (
             <Button
               as="a"
-              href="/dashboard"
+              href="/sites"
               backgroundColor="gray.900"
               color="white"
               fontWeight="medium"
@@ -70,39 +71,7 @@ const Home = ({ allFeedback }) => {
               View Dashboard
             </Button>
           ) : (
-            <Stack isInline>
-              <Button
-                onClick={(e) => auth.signinWithGitHub()}
-                backgroundColor="gray.900"
-                color="white"
-                fontWeight="medium"
-                leftIcon="github"
-                mt={4}
-                _hover={{ bg: 'gray.700' }}
-                _active={{
-                  bg: 'gray.800',
-                  transform: 'scale(0.95)'
-                }}
-              >
-                Sign In with GitHub
-              </Button>
-              <Button
-                onClick={(e) => auth.signinWithGoogle()}
-                backgroundColor="white"
-                color="gray.900"
-                variant="outline"
-                fontWeight="medium"
-                leftIcon="google"
-                mt={4}
-                _hover={{ bg: 'gray.100' }}
-                _active={{
-                  bg: 'gray.100',
-                  transform: 'scale(0.95)'
-                }}
-              >
-                Sign In with Google
-              </Button>
-            </Stack>
+            <LoginButtons />
           )}
         </Flex>
       </Box>
