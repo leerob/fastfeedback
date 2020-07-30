@@ -9,19 +9,22 @@ import {
   Box
 } from '@chakra-ui/core';
 
-const FeedbackTableHeader = ({ siteName }) => (
+const SiteHeader = ({ siteName }) => (
   <Box mx={4}>
     <Breadcrumb>
       <BreadcrumbItem>
-        <NextLink href="/feedback" passHref>
-          <BreadcrumbLink>Feedback</BreadcrumbLink>
+        <NextLink href="/sites" passHref>
+          <BreadcrumbLink>Sites</BreadcrumbLink>
         </NextLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        <BreadcrumbLink>{siteName || '-'}</BreadcrumbLink>
       </BreadcrumbItem>
     </Breadcrumb>
     <Flex justifyContent="space-between">
-      <Heading mb={8}>All Feedback</Heading>
+      <Heading mb={8}>{siteName || '-'}</Heading>
     </Flex>
   </Box>
 );
 
-export default FeedbackTableHeader;
+export default SiteHeader;

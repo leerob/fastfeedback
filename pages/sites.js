@@ -27,7 +27,7 @@ const Dashboard = () => {
   if (data.sites.length) {
     return (
       <DashboardShell>
-        <SiteTableHeader />
+        <SiteTableHeader isPaidAccount={isPaidAccount} />
         <SiteTable sites={data.sites} />
       </DashboardShell>
     );
@@ -42,7 +42,7 @@ const Dashboard = () => {
 };
 
 const DashboardPage = () => (
-  <Page name="Dashboard" path="/dashboard">
+  <Page name="Dashboard" path="/sites">
     <Dashboard />
   </Page>
 );
