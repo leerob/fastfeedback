@@ -1,60 +1,39 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Box, FormControl, Textarea, Button } from '@chakra-ui/core';
+import useSWR, { mutate } from 'swr';
 
 import { useAuth } from '@/lib/auth';
 import { createFeedback } from '@/lib/db';
-import { getAllFeedback, getAllSites, getSite } from '@/lib/db-admin';
+import fetcher from '@/utils/fetcher';
 import Feedback from '@/components/Feedback';
 import DashboardShell from '@/components/DashboardShell';
 import SiteHeader from '@/components/SiteHeader';
 import LoginButtons from '@/components/LoginButtons';
 
-export async function getStaticProps(context) {
-  const [siteId, route] = context.params.site;
-  const { feedback } = await getAllFeedback(siteId, route);
-  const { site } = await getSite(siteId);
-
-  return {
-    props: {
-      initialFeedback: feedback,
-      site
-    },
-
-    unstable_revalidate: 1
-  };
-}
-
-export async function getStaticPaths() {
-  const { sites } = await getAllSites();
-  const paths = sites.map((site) => ({
-    params: {
-      site: [site.id.toString()]
-    }
-  }));
-
-  return {
-    paths,
-    fallback: true
-  };
-}
-
-const FeedbackPage = ({ initialFeedback, site }) => {
+const FeedbackPage = () => {
   const { user, loading } = useAuth();
-  const router = useRouter();
   const inputEl = useRef(null);
-  const [allFeedback, setAllFeedback] = useState(initialFeedback);
-  const [siteId, route] = router.query.site;
+  const router = useRouter();
+  const siteAndRoute = router.query?.site;
+  const siteId = siteAndRoute ? siteAndRoute[0] : null;
+  const route = siteAndRoute ? siteAndRoute[1] : null;
+  const feedbackApi = route
+    ? `/api/feedback/${siteId}/${route}`
+    : `/api/feedback/${siteId}`;
 
-  useEffect(() => {
-    setAllFeedback(initialFeedback);
-  }, [initialFeedback]);
+  const { data: siteData } = useSWR(`/api/site/${siteId}`, fetcher);
+  const { data: feedbackData } = useSWR(feedbackApi, fetcher);
+
+  const site = siteData?.site;
+  const allFeedback = feedbackData?.feedback;
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const newFeedback = {
       siteId,
+      siteAuthorId: site.authorId,
       route: route || '/',
       author: user.name,
       authorId: user.uid,
@@ -65,15 +44,21 @@ const FeedbackPage = ({ initialFeedback, site }) => {
     };
 
     inputEl.current.value = '';
-    setAllFeedback([newFeedback, ...allFeedback]);
     createFeedback(newFeedback);
+    mutate(
+      feedbackApi,
+      async (data) => ({
+        feedback: [newFeedback, ...data.feedback]
+      }),
+      false
+    );
   };
 
   const LoginOrLeaveFeedback = () =>
     user ? (
       <Button
         type="submit"
-        isDisabled={router.isFallback}
+        isDisabled={!siteData || !feedbackData}
         backgroundColor="gray.900"
         color="white"
         fontWeight="medium"
@@ -93,7 +78,7 @@ const FeedbackPage = ({ initialFeedback, site }) => {
   return (
     <DashboardShell>
       <SiteHeader
-        isSiteOwner={true}
+        isSiteOwner={site?.authorId === user?.uid}
         site={site}
         siteId={siteId}
         route={route}
@@ -111,6 +96,7 @@ const FeedbackPage = ({ initialFeedback, site }) => {
               ref={inputEl}
               id="comment"
               placeholder="Leave a comment"
+              isDisabled={!user}
               h="100px"
             />
             {!loading && <LoginOrLeaveFeedback />}

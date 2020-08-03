@@ -7,7 +7,6 @@ service cloud.firestore {
       match /checkout_sessions/{id} {
         allow read, write: if isUser(uid);
       }
-
       match /subscriptions/{id} {
         allow read, write: if isUser(uid);
       }
@@ -24,8 +23,8 @@ service cloud.firestore {
     }
     
     match /feedback/{uid} {
-      allow read: if isOwner();
-      allow delete: if isOwner();
+      allow read: if true;
+      allow delete: if isOwner() || isSiteOwner();
       allow update: if isOwner() && willBeOwner();
       allow create: if willBeOwner();
     }
@@ -49,6 +48,10 @@ function isSignedIn() {
 
 function isOwner(){
   return isUser(currentData().authorId);
+}
+
+function isSiteOwner(){
+  return isUser(currentData().siteAuthorId);
 }
 
 function willBeOwner(){

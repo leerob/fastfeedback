@@ -18,7 +18,7 @@ export async function getStaticProps(context) {
       allFeedback: feedback,
       site
     },
-    unstable_revalidate: 1
+    revalidate: 1
   };
 }
 
