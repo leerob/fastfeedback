@@ -1,4 +1,4 @@
-export default async (url, token) => {
+const fetcher = async (url, token) => {
   const res = await fetch(url, {
     method: 'GET',
     headers: new Headers({ 'Content-Type': 'application/json', token }),
@@ -7,3 +7,5 @@ export default async (url, token) => {
 
   return res.json();
 };
+
+export default fetcher;

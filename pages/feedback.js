@@ -9,7 +9,7 @@ import FeedbackEmptyState from '@/components/FeedbackEmptyState';
 import FeedbackTableHeader from '@/components/FeedbackTableHeader';
 import FeedbackTableSkeleton from '@/components/FeedbackTableSkeleton';
 
-const MyFeedback = () => {
+const AllFeedback = () => {
   const { user } = useAuth();
   const { data } = useSWR(user ? ['/api/feedback', user.token] : null, fetcher);
 
@@ -34,10 +34,10 @@ const MyFeedback = () => {
   );
 };
 
-const MyFeedbackPage = () => (
-  <Page name="My Feedback" path="/feedback">
-    <MyFeedback />
+const AllFeedbackPage = () => (
+  <Page name="All Feedback" path="/feedback">
+    <AllFeedback />
   </Page>
 );
 
-export default MyFeedbackPage;
+export default AllFeedbackPage;

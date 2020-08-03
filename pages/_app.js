@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { Global, css } from '@emotion/core';
 import { DefaultSeo } from 'next-seo';
+import Head from 'next/head';
 import Router from 'next/router';
 import * as Fathom from 'fathom-client';
 
@@ -13,6 +14,9 @@ import SEO from '../next-seo.config';
 const GlobalStyle = ({ children }) => {
   return (
     <>
+      <Head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+      </Head>
       <CSSReset />
       <Global
         styles={css`

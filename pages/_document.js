@@ -5,8 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
+          <meta content="IE=edge" httpEquiv="X-UA-Compatible" />{' '}
           <meta content="#ffffff" name="theme-color" />
           <meta content="#ffffff" name="msapplication-TileColor" />
           <meta
