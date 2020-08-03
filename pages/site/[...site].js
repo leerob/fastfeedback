@@ -18,12 +18,12 @@ const FeedbackPage = () => {
   const siteAndRoute = router.query?.site;
   const siteId = siteAndRoute ? siteAndRoute[0] : null;
   const route = siteAndRoute ? siteAndRoute[1] : null;
+  const feedbackApi = route
+    ? `/api/feedback/${siteId}/${route}`
+    : `/api/feedback/${siteId}`;
 
   const { data: siteData } = useSWR(`/api/site/${siteId}`, fetcher);
-  const { data: feedbackData } = useSWR(
-    route ? `/api/feedback/${siteId}/${route}` : `/api/feedback/${siteId}`,
-    fetcher
-  );
+  const { data: feedbackData } = useSWR(feedbackApi, fetcher);
 
   const site = siteData?.site;
   const allFeedback = feedbackData?.feedback;
@@ -46,13 +46,10 @@ const FeedbackPage = () => {
     inputEl.current.value = '';
     createFeedback(newFeedback);
     mutate(
-      `/api/feedback/${siteId}`,
-      async (data) => {
-        console.log(data);
-        return {
-          feedback: [newFeedback, ...data.feedback]
-        };
-      },
+      feedbackApi,
+      async (data) => ({
+        feedback: [newFeedback, ...data.feedback]
+      }),
       false
     );
   };
