@@ -53,7 +53,7 @@ const Home = ({ allFeedback, site }) => {
             >
               React 2025
             </Link>
-            {`. It's the easiest way to add comments or reviews to your static site. It's still a work-in-progress, but you can try it out by logging in.`}
+            {`. It's the easiest way to add comments or reviews to your static site. It's still a work-in-progress, but you can try it out by leaving a comment below.`}
           </Text>
           {auth.user ? (
             <Button
