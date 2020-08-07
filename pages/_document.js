@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta content="IE=edge" httpEquiv="X-UA-Compatible" />{' '}
+          <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="#ffffff" name="theme-color" />
           <meta content="#ffffff" name="msapplication-TileColor" />
           <meta

@@ -7,7 +7,7 @@ import Feedback from '@/components/Feedback';
 import FeedbackLink from '@/components/FeedbackLink';
 import LoginButtons from '@/components/LoginButtons';
 
-const SITE_ID = 'yjIaQj1mKtVKqUnU9tb3';
+const SITE_ID = process.env.NEXT_PUBLIC_HOME_PAGE_SITE_ID;
 
 export async function getStaticProps(context) {
   const { feedback } = await getAllFeedback(SITE_ID);

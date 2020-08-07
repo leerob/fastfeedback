@@ -15,17 +15,7 @@ $ yarn dev
 
 ## Environment Variables
 
-```
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_LOGFLARE_KEY=
-NEXT_PUBLIC_LOGFLARE_STREAM=
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-NEXT_PUBLIC_FATHOM_SITE_ID=
-FIREBASE_PRIVATE_KEY=
-FIREBASE_CLIENT_EMAIL=
-```
+See [`.env.example`](https://github.com/leerob/fastfeedback/blob/master/.env.example) for an example.
 
 ## Built Using
 
