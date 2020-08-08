@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { Global, css } from '@emotion/core';
 import { DefaultSeo } from 'next-seo';
