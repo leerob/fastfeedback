@@ -1,15 +1,9 @@
-import { useEffect } from 'react';
-import {
-  ThemeProvider,
-  ColorModeProvider,
-  CSSReset,
-  useColorMode
-} from '@chakra-ui/core';
+import { useEffect, useState } from 'react';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { Global, css } from '@emotion/core';
 import { DefaultSeo } from 'next-seo';
 import Head from 'next/head';
 import Router from 'next/router';
-import { useRouter } from 'next/router';
 import * as Fathom from 'fathom-client';
 
 import { AuthProvider } from '@/lib/auth';
@@ -46,20 +40,6 @@ const GlobalStyle = ({ children }) => {
   );
 };
 
-const ColorModeWatcher = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { query } = useRouter();
-  const colorModeParam = query?.colorMode;
-
-  useEffect(() => {
-    if (colorModeParam !== colorMode) {
-      toggleColorMode();
-    }
-  }, [colorModeParam, colorMode, toggleColorMode]);
-
-  return null;
-};
-
 const App = ({ Component, pageProps }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
@@ -72,12 +52,9 @@ const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={customTheme}>
       <AuthProvider>
-        <ColorModeProvider>
-          <ColorModeWatcher />
-          <DefaultSeo {...SEO} />
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </ColorModeProvider>
+        <DefaultSeo {...SEO} />
+        <GlobalStyle />
+        <Component {...pageProps} />
       </AuthProvider>
     </ThemeProvider>
   );

@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  Box,
-  Heading,
-  Text,
-  Divider,
-  Icon,
-  Flex,
-  useColorMode
-} from '@chakra-ui/core';
+import { Box, Heading, Text, Divider, Icon, Flex } from '@chakra-ui/core';
 import { format, parseISO } from 'date-fns';
 
+import { useTheme } from '@/utils/useTheme';
+
 const Feedback = ({ author, text, createdAt, provider, isLast, settings }) => {
-  const { colorMode } = useColorMode();
+  const colorMode = useTheme();
   const authorColor = {
     light: 'gray.900',
     dark: 'gray.200'
