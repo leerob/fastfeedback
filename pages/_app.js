@@ -11,6 +11,10 @@ import customTheme from '@/styles/theme';
 
 import SEO from '../next-seo.config';
 
+Router.events.on('routeChangeComplete', () => {
+  Fathom.trackPageview();
+});
+
 const GlobalStyle = ({ children }) => {
   return (
     <>
@@ -35,10 +39,6 @@ const GlobalStyle = ({ children }) => {
     </>
   );
 };
-
-Router.events.on('routeChangeComplete', () => {
-  Fathom.trackPageview();
-});
 
 const App = ({ Component, pageProps }) => {
   useEffect(() => {
