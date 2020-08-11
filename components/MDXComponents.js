@@ -157,7 +157,16 @@ const MDXComponents = {
   h2: (props) => <DocsHeading as="h2" fontWeight="bold" size="lg" {...props} />,
   h3: (props) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
   inlineCode: (props) => <Code fontSize="0.84em" {...props} />,
-  pre: (props) => <Code borderRadius={4} my={4} p={2} {...props} />,
+  pre: (props) => (
+    <Code
+      display="block"
+      whiteSpace="pre-wrap"
+      borderRadius={6}
+      my={4}
+      p={4}
+      {...props}
+    />
+  ),
   kbd: Kbd,
   br: (props) => <Box height="24px" {...props} />,
   hr: Hr,
