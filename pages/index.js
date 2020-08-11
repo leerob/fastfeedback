@@ -6,6 +6,7 @@ import { getAllFeedback, getSite } from '@/lib/db-admin';
 import Feedback from '@/components/Feedback';
 import FeedbackLink from '@/components/FeedbackLink';
 import LoginButtons from '@/components/LoginButtons';
+import Footer from '@/components/Footer';
 
 const SITE_ID = process.env.NEXT_PUBLIC_HOME_PAGE_SITE_ID;
 
@@ -95,6 +96,7 @@ const Home = ({ allFeedback, site }) => {
           />
         ))}
       </Box>
+      <Footer />
     </>
   );
 };

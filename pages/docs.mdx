@@ -1,0 +1,72 @@
+import DocsLayout from '@/components/DocsLayout';
+
+export default (props) => <DocsLayout {...props} />;
+
+# Getting Started
+
+Welcome to Fast Feedback! 👋🏼
+
+To get started adding feedback to your site, retrieve the site ID
+from the URL and place this iframe inside your site.
+
+```
+<iframe src="https://fastfeedback.io/embed/SITE_ID" />
+```
+
+## Multiple Routes
+
+If you want to add feedback to multiple routes in a single site,
+forward a unique slug for that route.
+
+```
+<iframe src="https://fastfeedback.io/embed/SITE_ID/ROUTE" />
+```
+
+This is perfect for adding comments to a blog or product reviews.
+
+## Automatic Resizing
+
+When embedding your feedback iframe, you might want it to automatically resize the
+height to its contents. This can be achieved using [iframe-resizer](https://github.com/davidjbradshaw/iframe-resizer).
+
+For example, if you are using React, you can add [iframe-resizer-react](https://github.com/davidjbradshaw/iframe-resizer-react) and do
+something like this.
+
+```jsx
+<IframeResizer
+  checkOrigin={false}
+  title="Comments"
+  src={`https://fastfeedback.io/embed/SITE_ID`}
+  style={{
+    width: '1px',
+    minWidth: '100%'
+  }}
+/>
+```
+
+## API
+
+If you'd like to completely customize the look of your feedback, you can use our API.
+Simply make a `GET` request to `/api/feedback/SITE_ID`.
+
+Here's an example using React and [SWR](https://swr.vercel.app).
+
+```jsx
+import useSWR from 'swr'
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+function Feedback () {
+  const API = 'https://fastfeedback.io/api/feedback/SITE_ID';
+  const { data, error } = useSWR(API, fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
+  return {data.feedback.map(feedback => (
+      <p>{feedback.author}</p>
+      <p>{feedback.createdAt}</p>
+      <p>{feedback.text}</p>
+  ))}
+}
+```
