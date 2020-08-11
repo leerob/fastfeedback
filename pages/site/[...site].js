@@ -37,7 +37,7 @@ const FeedbackPage = () => {
       route: route || '/',
       author: user.name,
       authorId: user.uid,
-      text: inputEl.current.value,
+      text: inputEl.current.value.replace('\n', '\n\n'),
       createdAt: new Date().toISOString(),
       provider: user.provider,
       status: 'pending'
