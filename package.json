@@ -11,6 +11,9 @@
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@mdx-js/loader": "^1.6.16",
+    "@mdx-js/react": "^1.6.16",
+    "@next/mdx": "^9.5.2",
     "@stripe/stripe-js": "^1.8.0",
     "date-fns": "^2.15.0",
     "emotion-theming": "^10.0.27",
@@ -26,6 +29,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-hook-form": "^5.7.2",
+    "react-markdown": "^4.3.1",
     "swr": "^0.3.0"
   }
 }
