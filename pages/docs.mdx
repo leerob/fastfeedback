@@ -1,6 +1,6 @@
-import MdxLayout from '../components/MdxLayout';
+import DocsLayout from '@/components/DocsLayout';
 
-export default (props) => <MdxLayout {...props} />;
+export default (props) => <DocsLayout {...props} />;
 
 # Getting Started
 
@@ -28,15 +28,15 @@ height to its contents. This can be achieved using [iframe-resizer](https://gith
 For example, if you are using React, you can add [iframe-resizer-react](https://github.com/davidjbradshaw/iframe-resizer-react) and do
 something like this.
 
-```
+```jsx
 <IframeResizer
-    checkOrigin={false}
-    title="Comments"
-    src={`https://fastfeedback.io/embed/SITE_ID`}
-    style={{
-        width: '1px',
-        minWidth: '100%'
-    }}
+  checkOrigin={false}
+  title="Comments"
+  src={`https://fastfeedback.io/embed/SITE_ID`}
+  style={{
+    width: '1px',
+    minWidth: '100%'
+  }}
 />
 ```
 
@@ -44,3 +44,24 @@ something like this.
 
 If you'd like to completely customize the look of your feedback, you can use our API.
 Simply make a `GET` request to `https://fastfeedback.io/api/feedback/SITE_ID`.
+
+Here's an example using React and [SWR](https://swr.vercel.app).
+
+```jsx
+import useSWR from 'swr'
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+function Feedback () {
+  const { data, error } = useSWR('https://fastfeedback.io/api/feedback/SITE_ID', fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
+  return {data.feedback.map(({ author, text, createdAt } ) => (
+      <p>{author}</p>
+      <p>{createdAt}</p>
+      <p>{text}</p>
+  ))}
+}
+```
