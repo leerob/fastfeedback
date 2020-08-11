@@ -25,7 +25,7 @@ service cloud.firestore {
     match /feedback/{uid} {
       allow read: if true;
       allow delete: if isOwner() || isSiteOwner();
-      allow update: if isOwner() && willBeOwner();
+      allow update: if isOwner() && willBeOwner() || isSiteOwner() && willBeSiteOwner();
       allow create: if willBeOwner();
     }
     
@@ -56,6 +56,10 @@ function isSiteOwner(){
 
 function willBeOwner(){
   return isUser(incomingData().authorId);
+}
+
+function willBeSiteOwner(){
+  return isUser(incomingData().siteAuthorId);
 }
 
 function currentData() {
