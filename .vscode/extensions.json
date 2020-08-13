@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "bierner.markdown-preview-github-styles",
+    "Compulim.vscode-clock",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "earshinov.sort-lines-by-selection",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "legfrey.javascript-test-runner",
+    "MarkThomasMiller.sorcerer",
+    "Nautigsam.go-to-test",
+    "NuclleaR.vscode-extension-auto-import",
+    "Orta.vscode-jest",
+    "pnp.polacode",
+    "shyykoserhiy.vscode-spotify",
+    "silvenon.mdx",
+    "vscode-icons-team.vscode-icons",
+    "Zignd.html-css-class-completion"
+  ]
+}

@@ -41,14 +41,11 @@ const DashboardShell = ({ children }) => {
             </NextLink>
           </Flex>
           <Flex justifyContent="center" alignItems="center">
-            {user && (
-              <NextLink href="/account" passHref>
-                <Button as="a" variant="ghost" mr={2}>
-                  Account
-                </Button>
-              </NextLink>
-            )}
-            <Avatar size="sm" src={user?.photoUrl} />
+            <NextLink href="/account" passHref>
+              <Link>
+                <Avatar size="sm" src={user?.photoUrl} />
+              </Link>
+            </NextLink>
           </Flex>
         </Flex>
       </Flex>
