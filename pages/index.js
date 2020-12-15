@@ -28,7 +28,7 @@ const Home = ({ allFeedback, site }) => {
 
   return (
     <>
-      <Box bg="gray.100" py={16}>
+      <Box bg="gray.100" py={16} px={4}>
         <Flex as="main" direction="column" maxW="700px" margin="0 auto">
           <Head>
             <script
@@ -46,7 +46,7 @@ const Home = ({ allFeedback, site }) => {
             <Text as="span" fontWeight="bold" display="inline">
               Fast Feedback
             </Text>
-            {' is being built as part of '}
+            {' was built as part of '}
             <Link
               href="https://react2025.com"
               isExternal
@@ -54,7 +54,7 @@ const Home = ({ allFeedback, site }) => {
             >
               React 2025
             </Link>
-            {`. It's the easiest way to add comments or reviews to your static site. It's still a work-in-progress, but you can try it out by leaving a comment below.`}
+            {`. It's the easiest way to add comments or reviews to your static site. Try it out by leaving a comment below. After the comment is approved, it will display below.`}
           </Text>
           {auth.user ? (
             <Button
@@ -85,6 +85,7 @@ const Home = ({ allFeedback, site }) => {
         maxWidth="700px"
         margin="0 auto"
         mt={8}
+        px={4}
       >
         <FeedbackLink paths={[SITE_ID]} />
         {allFeedback.map((feedback, index) => (
