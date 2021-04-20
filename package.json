@@ -22,7 +22,7 @@
     "firebase-admin": "^8.12.1",
     "iframe-resizer": "^4.2.11",
     "js-cookie": "^2.2.1",
-    "next": "^9.5.1",
+    "next": "^9.5.4",
     "next-seo": "^4.7.3",
     "pino": "^6.5.0",
     "pino-logflare": "^0.3.5",
