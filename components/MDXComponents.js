@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import {
   Box,
   Callout,
