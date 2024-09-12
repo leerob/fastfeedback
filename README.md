@@ -1,26 +1,8 @@
 # Fast Feedback
 
-> Easily add user reviews, feedback, and comments to your website in one line of code.
-
-This product is being built as part of [React 2025](https://react2025.com).
-
-## Running Locally
-
-```bash
-$ git clone https://github.com/leerob/fastfeedback.git
-$ cd fastfeedback
-$ yarn
-$ yarn dev
-```
-
-## Environment Variables
-
-See [`.env.example`](https://github.com/leerob/fastfeedback/blob/master/.env.example) for an example.
-
-## Built Using
-
-- [Next.js](https://nextjs.org/)
-- [Vercel](https://vercel.com)
-- [Stripe](https://stripe.com/)
-- [Firebase](https://firebase.com)
-- [Chakra UI](https://chakra-ui.com/)
+> [!WARNING]  
+> The repository backing Fast Feedback and the associated course (React 2025) has been updated to match what React actually will look like in 2025.
+> 
+> This means it uses all of the latest React 19 features, as well as improvements in Next.js in the past 4 years. You can still use this repo as an archived reference, but I would recommend checking out the new repo to see the latest patterns.
+> 
+> [**View the updated repo**](https://github.com/leerob/next-saas-starter)
